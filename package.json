@@ -1,0 +1,12 @@
+{
+  "name": "comtele-sdk",
+  "version": "1.0.0",
+  "description": "SDK para envio de mensagens de texto usando a plataforma Comtele",
+  "main": "index.js",
+  "author": {
+    "name": "Diego Vieira"
+  },
+  "dependencies": {
+    "node-rest-client": "^3.1.0"
+  }
+}
