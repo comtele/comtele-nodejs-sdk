@@ -1,65 +1,74 @@
-﻿const Client = require('node-rest-client').Client;
+﻿import { Client } from "node-rest-client";
 
-module.exports = class ContextMessageService {
+export default class ContextMessageService {
+  constructor(apiKey) {
+    this.apiKey = apiKey;
+  }
 
-    constructor(apiKey) {
-        this.apiKey = apiKey;
-    }
+  send(sender, contextRuleName, receivers, callback) {
+    var client = new Client();
+    var args = {
+      data: {
+        sender,
+        contextRuleName,
+        receivers: receivers.join()
+      },
+      headers: {
+        "Content-Type": "application/json",
+        "auth-key": this.apiKey
+      }
+    };
 
-    send(sender, contextRuleName, receivers, callback) {
+    client.post(
+      "https://sms.comtele.com.br/api/v2/sendcontextmessage",
+      args,
+      function(data, response) {
+        callback(data);
+      }
+    );
+  }
 
-        var client = new Client();
-        var args = {
-            data: {
-                sender,
-                contextRuleName,
-                receivers: receivers.join()
-            },
-            headers: {
-                'Content-Type': 'application/json',
-                'auth-key': this.apiKey
-            }
-        };
+  schedule(sender, contextRuleName, scheduleDate, receivers, callback) {
+    var client = new Client();
+    var args = {
+      data: {
+        sender,
+        scheduleDate,
+        contextRuleName,
+        receivers: receivers.join()
+      },
+      headers: {
+        "Content-Type": "application/json",
+        "auth-key": this.apiKey
+      }
+    };
 
-        client.post('https://sms.comtele.com.br/api/v2/sendcontextmessage', args, function (data, response) {
-            callback(data);
-        });
-    }
+    client.post(
+      "https://sms.comtele.com.br/api/v2/schedulecontextmessage",
+      args,
+      function(data, response) {
+        callback(data);
+      }
+    );
+  }
 
-    schedule(sender, contextRuleName, scheduleDate, receivers, callback) {
+  getReport(startDate, endDate, sender, contextRuleName, callback) {
+    let client = new Client();
 
-        var client = new Client();
-        var args = {
-            data: {
-                sender,
-                scheduleDate,
-                contextRuleName,
-                receivers: receivers.join()
-            },
-            headers: {
-                'Content-Type': 'application/json',
-                'auth-key': this.apiKey
-            }
-        };
+    let args = {
+      parameters: { startDate, endDate, sender, contextRuleName },
+      headers: {
+        "Content-Type": "application/json",
+        "auth-key": this.apiKey
+      }
+    };
 
-        client.post('https://sms.comtele.com.br/api/v2/schedulecontextmessage', args, function (data, response) {
-            callback(data);
-        });
-    }
-
-    getReport(startDate, endDate, sender, contextRuleName, callback) {
-        let client = new Client();
-
-        let args = {
-            parameters: { startDate, endDate, sender, contextRuleName },
-            headers: {
-                'Content-Type': 'application/json',
-                'auth-key': this.apiKey
-            }
-        };
-
-        client.get('https://sms.comtele.com.br/api/v2/contextreporting', args, function (data, response) {
-            callback(data);
-        });
-    }
+    client.get(
+      "https://sms.comtele.com.br/api/v2/contextreporting",
+      args,
+      function(data, response) {
+        callback(data);
+      }
+    );
+  }
 }

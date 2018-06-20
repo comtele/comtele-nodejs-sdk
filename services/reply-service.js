@@ -1,23 +1,27 @@
-﻿const Client = require('node-rest-client').Client;
+﻿import { Client } from "node-rest-client";
 
-module.exports = class ReplyService {
-    constructor(apiKey) {
-        this.apiKey = apiKey;
-    }
+export default class ReplyService {
+  constructor(apiKey) {
+    this.apiKey = apiKey;
+  }
 
-    getReport(startDate, endDate, sender, callback) {
-        let client = new Client();
+  getReport(startDate, endDate, sender, callback) {
+    let client = new Client();
 
-        let args = {
-            parameters: { startDate, endDate, sender },
-            headers: {
-                'Content-Type': 'application/json',
-                'auth-key': this.apiKey
-            }
-        };
+    let args = {
+      parameters: { startDate, endDate, sender },
+      headers: {
+        "Content-Type": "application/json",
+        "auth-key": this.apiKey
+      }
+    };
 
-        client.get('https://sms.comtele.com.br/api/v2/replyreporting', args, function (data, response) {
-            callback(data);
-        });
-    }
+    client.get(
+      "https://sms.comtele.com.br/api/v2/replyreporting",
+      args,
+      function(data, response) {
+        callback(data);
+      }
+    );
+  }
 }
