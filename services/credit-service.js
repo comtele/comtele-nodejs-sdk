@@ -1,6 +1,6 @@
-﻿import { Client } from "node-rest-client";
+﻿const { Client } = require("node-rest-client");
 
-export default class CreditService {
+module.exports = class CreditService {
   constructor(apiKey) {
     this.apiKey = apiKey;
   }
@@ -83,4 +83,4 @@ export default class CreditService {
       }
     );
   }
-}
+};

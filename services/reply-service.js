@@ -1,6 +1,6 @@
-﻿import { Client } from "node-rest-client";
+﻿const { Client } = require("node-rest-client");
 
-export default class ReplyService {
+module.exports = class ReplyService {
   constructor(apiKey) {
     this.apiKey = apiKey;
   }
@@ -24,4 +24,4 @@ export default class ReplyService {
       }
     );
   }
-}
+};

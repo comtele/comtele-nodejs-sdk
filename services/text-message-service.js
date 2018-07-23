@@ -1,6 +1,6 @@
-import { Client } from "node-rest-client";
+const { Client } = require("node-rest-client");
 
-export default class TextMessageService {
+module.exports = class TextMessageService {
   constructor(apiKey) {
     this.apiKey = apiKey;
 
@@ -135,4 +135,4 @@ export default class TextMessageService {
 
     return reportGroupAsString;
   }
-}
+};

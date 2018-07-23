@@ -1,6 +1,6 @@
-﻿import { Client } from "node-rest-client";
+﻿const { Client } = require("node-rest-client");
 
-export default class ContextMessageService {
+module.exports = class ContextMessageService {
   constructor(apiKey) {
     this.apiKey = apiKey;
   }
@@ -71,4 +71,4 @@ export default class ContextMessageService {
       }
     );
   }
-}
+};
