@@ -30,7 +30,7 @@ module.exports = class TextMessageService {
       }
     };
 
-    client.post("https://sms.comtele.com.br/api/v2/send", args, function(
+    client.post("https://sms.comtele.com.br/api/v2/send", args, function (
       data,
       response
     ) {
@@ -53,7 +53,7 @@ module.exports = class TextMessageService {
       }
     };
 
-    client.post("https://sms.comtele.com.br/api/v2/schedule", args, function(
+    client.post("https://sms.comtele.com.br/api/v2/schedule", args, function (
       data,
       response
     ) {
@@ -76,7 +76,7 @@ module.exports = class TextMessageService {
     client.get(
       "https://sms.comtele.com.br/api/v2/detailedreporting",
       args,
-      function(data, response) {
+      function (data, response) {
         callback(data);
       }
     );
@@ -97,7 +97,7 @@ module.exports = class TextMessageService {
     client.get(
       "https://sms.comtele.com.br/api/v2/consolidatedreporting",
       args,
-      function(data, response) {
+      function (data, response) {
         callback(data);
       }
     );

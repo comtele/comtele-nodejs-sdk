@@ -1,6 +1,6 @@
 {
   "name": "comtele-sdk",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "SDK para envio de mensagens de texto usando a plataforma Comtele",
   "main": "index.js",
   "author": {
